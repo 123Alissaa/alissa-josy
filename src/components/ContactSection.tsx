@@ -123,7 +123,7 @@ const ContactSection = () => {
             <div className="h-px bg-primary w-32"></div>
           </div>
           <p className="font-playfair italic text-muted-foreground">
-            Made with elegance, wit, and JavaScript ✨<br />
+            Made with elegance, wit, JavaScript and coffee ✨<br />
             <span className="text-primary">Yours sincerely, Alissa</span>
           </p>
         </div>

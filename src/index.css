@@ -11,23 +11,23 @@ All colors MUST be HSL.
     /* Bridgerton Color Palette */
     --background: 210 29% 84%; /* Powder blue #B0C4DE */
     --background-gradient-end: 45 50% 97%; /* Ivory #FAF9F6 */
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 222.2 84% 8%;
 
     --card: 45 50% 97%; /* Ivory cards */
-    --card-foreground: 222.2 84% 4.9%;
-    --card-border: 35 36% 76%; /* Metallic gold #C9A368 */
+    --card-foreground: 222.2 84% 8%;
+    --card-border: 35 45% 65%; /* Enhanced metallic gold */
 
     --popover: 45 50% 97%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222.2 84% 8%;
 
-    --primary: 35 36% 76%; /* Metallic gold */
+    --primary: 35 45% 65%; /* Enhanced metallic gold */
     --primary-foreground: 45 50% 97%;
 
     --secondary: 333 25% 81%; /* Pastel rose #E6B7C8 */
     --secondary-foreground: 222.2 84% 4.9%;
 
     --muted: 300 24% 85%; /* Muted lavender #D8BFD8 */
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 215.4 16.3% 35%;
 
     --accent: 300 24% 85%; /* Muted lavender */
     --accent-foreground: 222.2 84% 4.9%;
@@ -35,27 +35,27 @@ All colors MUST be HSL.
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 35 36% 76%; /* Gold borders */
+    --border: 35 45% 65%; /* Enhanced gold borders */
     --input: 45 50% 97%;
-    --ring: 35 36% 76%;
+    --ring: 35 45% 65%;
 
     --radius: 0.75rem; /* More rounded for elegant feel */
 
     /* Bridgerton-specific design tokens */
     --gradient-primary: linear-gradient(135deg, hsl(210 29% 84%), hsl(45 50% 97%));
     --gradient-card: linear-gradient(145deg, hsl(45 50% 97%), hsl(45 50% 95%));
-    --shadow-elegant: 0 8px 32px -8px hsl(35 36% 76% / 0.3);
-    --shadow-gold: 0 0 20px hsl(35 36% 76% / 0.4);
+    --shadow-elegant: 0 8px 32px -8px hsl(35 45% 65% / 0.3);
+    --shadow-gold: 0 0 20px hsl(35 45% 65% / 0.4);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 45 50% 97%;
     --sidebar-foreground: 222.2 84% 4.9%;
-    --sidebar-primary: 35 36% 76%;
+    --sidebar-primary: 35 45% 65%;
     --sidebar-primary-foreground: 45 50% 97%;
     --sidebar-accent: 300 24% 85%;
-    --sidebar-accent-foreground: 222.2 84% 4.9%;
-    --sidebar-border: 35 36% 76%;
-    --sidebar-ring: 35 36% 76%;
+    --sidebar-accent-foreground: 222.2 84% 8%;
+    --sidebar-border: 35 45% 65%;
+    --sidebar-ring: 35 45% 65%;
   }
 
   .dark {

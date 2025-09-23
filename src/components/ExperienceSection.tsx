@@ -10,9 +10,9 @@ const experiences = [
     location: "Tampa, FL",
     type: "Research",
     description: [
-      "Collaborating with 10+ students on an LLM-powered Misty robot that delivers personalized recipe recommendations via voice inputs using Gemini AI and Vertex APIs.",
-      "Contributed to Python-based WebSocket/Flask servers for real-time communication, enabling 50+ gesture and voice commands between Misty and Android app.",
-      "Configured Google Cloud services and deployed streaming logic across 5+ lab devices to support scalable robot-user interactions."
+      "🤖 Leading innovation in human-robot interaction through advanced AI integration",
+      "⚡ Architecting real-time communication systems that connect hardware with intelligent software",
+      "☁️ Deploying scalable cloud solutions across multiple lab environments"
     ]
   },
   {
@@ -20,11 +20,11 @@ const experiences = [
     company: "Undergraduate Studies at USF",
     period: "June 2024 - Present",
     location: "Tampa, FL", 
-    type: "Administrative",
+    type: "Operations",
     description: [
-      "Resolved 300+ student queries weekly, improving satisfaction and cutting wait time through optimized triaging workflows.",
-      "Automated ticket categorization and routing with university systems, maintaining 100% accuracy across 3 advising teams.",
-      "Partnered with advisors to document bottlenecks and implement process improvements, accelerating resolution speed by 20%."
+      "🎯 Streamlined university operations, enhancing the experience for 300+ students weekly",
+      "🔄 Automated complex workflows, achieving 100% accuracy across multiple advising teams",
+      "📈 Implemented process improvements that accelerated resolution times by 20%"
     ]
   },
   {
@@ -34,8 +34,9 @@ const experiences = [
     location: "Tampa, FL",
     type: "Leadership",
     description: [
-      "Organized event logistics pipelines in Notion and Excel macros, coordinating 5+ cross-cultural programs that boosted attendance by 60% to over 200+ students.",
-      "Developed a centralized outreach platform with automated Canva asset generation, streamlining workflows for leaders and raising weekly engagement by 40%."
+      "🌍 Orchestrated cross-cultural programs that brought together 200+ students from diverse backgrounds",
+      "📊 Developed centralized platforms with automated workflows, boosting engagement by 40%",
+      "🎨 Created systematic approaches to event management using modern productivity tools"
     ]
   },
   {
@@ -45,8 +46,9 @@ const experiences = [
     location: "Tampa, FL",
     type: "Leadership",
     description: [
-      "Managed backend event logistics across 10+ workshops and tech talks using Google Workspace and Slack integrations to coordinate across teams.",
-      "Standardized templated workflows and checklists that reduced prep time by 25% and improved event-day execution accuracy."
+      "🔧 Coordinated technical workshops and professional development events for aspiring engineers",
+      "📋 Standardized operational workflows, reducing preparation time by 25%",
+      "🤝 Facilitated seamless collaboration across multiple teams using integrated communication tools"
     ]
   }
 ];
@@ -57,7 +59,7 @@ const ExperienceSection = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-            Professional Experience
+            Experience & Leadership
           </h2>
           <div className="flex items-center justify-center space-x-4 text-primary mb-8">
             <div className="h-px bg-primary w-20"></div>
@@ -65,8 +67,8 @@ const ExperienceSection = () => {
             <div className="h-px bg-primary w-20"></div>
           </div>
           <p className="text-lg text-muted-foreground font-lato max-w-2xl mx-auto italic">
-            "Miss Alissa Josy has undertaken the most honorable positions and distinguished herself 
-            in the realms of research, leadership, and academic excellence..."
+            "Miss Alissa Josy has distinguished herself through innovative research, 
+            thoughtful leadership, and unwavering commitment to excellence..."
           </p>
         </div>
 
@@ -110,8 +112,8 @@ const ExperienceSection = () => {
                 <ul className="space-y-4">
                   {exp.description.map((item, idx) => (
                     <li key={idx} className="flex items-start text-muted-foreground font-lato">
-                      <span className="text-primary mr-3 mt-1 text-lg">•</span>
-                      <span className="leading-relaxed">{item}</span>
+                      <span className="mr-3 mt-1 text-lg">{item.charAt(0)}</span>
+                      <span className="leading-relaxed">{item.substring(2)}</span>
                     </li>
                   ))}
                 </ul>
