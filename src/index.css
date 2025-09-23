@@ -8,51 +8,54 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* Bridgerton Color Palette */
+    --background: 210 29% 84%; /* Powder blue #B0C4DE */
+    --background-gradient-end: 45 50% 97%; /* Ivory #FAF9F6 */
     --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
+    --card: 45 50% 97%; /* Ivory cards */
     --card-foreground: 222.2 84% 4.9%;
+    --card-border: 35 36% 76%; /* Metallic gold #C9A368 */
 
-    --popover: 0 0% 100%;
+    --popover: 45 50% 97%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 35 36% 76%; /* Metallic gold */
+    --primary-foreground: 45 50% 97%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 333 25% 81%; /* Pastel rose #E6B7C8 */
+    --secondary-foreground: 222.2 84% 4.9%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 300 24% 85%; /* Muted lavender #D8BFD8 */
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 300 24% 85%; /* Muted lavender */
+    --accent-foreground: 222.2 84% 4.9%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 35 36% 76%; /* Gold borders */
+    --input: 45 50% 97%;
+    --ring: 35 36% 76%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem; /* More rounded for elegant feel */
 
-    --sidebar-background: 0 0% 98%;
+    /* Bridgerton-specific design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(210 29% 84%), hsl(45 50% 97%));
+    --gradient-card: linear-gradient(145deg, hsl(45 50% 97%), hsl(45 50% 95%));
+    --shadow-elegant: 0 8px 32px -8px hsl(35 36% 76% / 0.3);
+    --shadow-gold: 0 0 20px hsl(35 36% 76% / 0.4);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 45 50% 97%;
+    --sidebar-foreground: 222.2 84% 4.9%;
+    --sidebar-primary: 35 36% 76%;
+    --sidebar-primary-foreground: 45 50% 97%;
+    --sidebar-accent: 300 24% 85%;
+    --sidebar-accent-foreground: 222.2 84% 4.9%;
+    --sidebar-border: 35 36% 76%;
+    --sidebar-ring: 35 36% 76%;
   }
 
   .dark {
@@ -100,6 +103,78 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-br from-background to-background-gradient-end text-foreground;
+    font-family: 'Lato', sans-serif;
+    min-height: 100vh;
   }
+
+  .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-lato {
+    font-family: 'Lato', sans-serif;
+  }
+
+  /* Bridgerton animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-fade-in-up-delay-1 {
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-fade-in-up-delay-2 {
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elegant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
 }
