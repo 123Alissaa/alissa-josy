@@ -29,71 +29,130 @@ const skillCategories = [
   }
 ];
 
-const proficiencySkills = [
-  { name: "Python", level: 95, color: "from-primary to-secondary" },
-  { name: "React.js", level: 88, color: "from-secondary to-primary" },
-  { name: "JavaScript/TypeScript", level: 85, color: "from-primary to-secondary" },
-  { name: "Data Structures & Algorithms", level: 90, color: "from-secondary to-primary" },
-  { name: "Machine Learning", level: 75, color: "from-primary to-secondary" },
-  { name: "SQL & Databases", level: 82, color: "from-secondary to-primary" },
+type SkillLevel = "Advanced" | "Intermediate" | "Beginner";
+
+const proficiencySkills: { name: string; level: SkillLevel; icon: typeof Code }[] = [
+  { name: "Python", level: "Advanced", icon: Code },
+  { name: "React.js", level: "Advanced", icon: Wrench },
+  { name: "JavaScript/TypeScript", level: "Intermediate", icon: Code },
+  { name: "Data Structures & Algorithms", level: "Intermediate", icon: Database },
+  { name: "Machine Learning", level: "Intermediate", icon: Sparkles },
+  { name: "SQL & Databases", level: "Intermediate", icon: Database },
 ];
 
-const AnimatedSkillBar = ({ name, level, color, delay }: { name: string; level: number; color: string; delay: number }) => {
-  const [animatedWidth, setAnimatedWidth] = useState(0);
+const getLevelConfig = (level: SkillLevel) => {
+  switch (level) {
+    case "Advanced":
+      return { 
+        stars: 3, 
+        color: "from-primary via-secondary to-primary",
+        bgColor: "bg-primary/20",
+        textColor: "text-primary",
+        description: "Expert proficiency"
+      };
+    case "Intermediate":
+      return { 
+        stars: 2, 
+        color: "from-secondary to-primary",
+        bgColor: "bg-secondary/20", 
+        textColor: "text-secondary",
+        description: "Strong working knowledge"
+      };
+    case "Beginner":
+      return { 
+        stars: 1, 
+        color: "from-muted-foreground to-muted",
+        bgColor: "bg-muted/30",
+        textColor: "text-muted-foreground",
+        description: "Learning & growing"
+      };
+  }
+};
+
+const AnimatedSkillCard = ({ name, level, icon: IconComponent, delay }: { 
+  name: string; 
+  level: SkillLevel; 
+  icon: typeof Code;
+  delay: number;
+}) => {
   const [isVisible, setIsVisible] = useState(false);
-  const barRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const config = getLevelConfig(level);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          setTimeout(() => setIsVisible(true), delay);
           observer.disconnect();
         }
       },
       { threshold: 0.3 }
     );
 
-    if (barRef.current) {
-      observer.observe(barRef.current);
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
     }
 
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => {
-        setAnimatedWidth(level);
-      }, delay);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible, level, delay]);
+  }, [delay]);
 
   return (
-    <div ref={barRef} className="group">
-      <div className="flex justify-between items-center mb-2">
-        <span className="font-lato text-foreground group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
-          <Star className="h-3 w-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          {name}
-        </span>
-        <span className="text-sm text-muted-foreground font-lato">{level}%</span>
-      </div>
-      <div className="h-3 bg-muted rounded-full overflow-hidden relative">
-        {/* Sparkle effect */}
-        <div 
-          className="absolute right-0 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10"
-          style={{ left: `${animatedWidth - 4}%` }}
-        >
-          <Sparkles className="h-4 w-4 text-primary-foreground" />
+    <div 
+      ref={cardRef} 
+      className={`group relative transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={`relative p-5 rounded-2xl border-2 border-card-border bg-gradient-card
+                      hover:border-primary/50 transition-all duration-500 hover:shadow-gold
+                      hover:-translate-y-1 overflow-hidden`}>
+        {/* Animated background gradient */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${config.color} opacity-0 
+                        group-hover:opacity-10 transition-opacity duration-500`}></div>
+        
+        {/* Floating sparkles on hover */}
+        <div className={`absolute top-2 right-2 transition-all duration-300 ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}>
+          <Sparkles className="h-4 w-4 text-primary animate-pulse" />
         </div>
         
-        <div 
-          className={`h-full bg-gradient-to-r ${color} rounded-full transition-all duration-1000 ease-out relative overflow-hidden`}
-          style={{ width: `${animatedWidth}%` }}
-        >
-          {/* Shimmer effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+        <div className="relative flex items-center gap-4">
+          {/* Icon */}
+          <div className={`p-3 rounded-xl ${config.bgColor} group-hover:scale-110 transition-transform duration-300`}>
+            <IconComponent className={`h-5 w-5 ${config.textColor}`} />
+          </div>
+          
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <h4 className="font-playfair font-semibold text-foreground text-sm md:text-base truncate group-hover:text-primary transition-colors duration-300">
+              {name}
+            </h4>
+            <p className="text-xs text-muted-foreground font-lato">{config.description}</p>
+          </div>
+          
+          {/* Stars indicator */}
+          <div className="flex gap-1">
+            {[...Array(3)].map((_, i) => (
+              <Star 
+                key={i} 
+                className={`h-4 w-4 transition-all duration-300 ${
+                  i < config.stars 
+                    ? `${config.textColor} fill-current ${isHovered ? 'scale-125' : ''}` 
+                    : 'text-muted/30'
+                }`}
+                style={{ transitionDelay: `${i * 50}ms` }}
+              />
+            ))}
+          </div>
+        </div>
+        
+        {/* Level badge */}
+        <div className={`absolute -bottom-1 -right-1 px-3 py-1 rounded-tl-xl rounded-br-xl
+                        ${config.bgColor} ${config.textColor} text-xs font-lato font-medium
+                        opacity-0 group-hover:opacity-100 transition-all duration-300
+                        transform translate-y-full group-hover:translate-y-0`}>
+          {level}
         </div>
       </div>
     </div>
@@ -143,14 +202,14 @@ const SkillsSection = () => {
                 <Star className="h-5 w-5 text-primary" />
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-5">
+            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {proficiencySkills.map((skill, index) => (
-                <AnimatedSkillBar 
+                <AnimatedSkillCard 
                   key={skill.name} 
                   name={skill.name} 
                   level={skill.level} 
-                  color={skill.color}
-                  delay={index * 150}
+                  icon={skill.icon}
+                  delay={index * 100}
                 />
               ))}
             </CardContent>
