@@ -1,9 +1,23 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Calendar, Rocket, CreditCard, Smartphone, Target, Zap, Shield, Clock, Lock, BarChart3, Sparkles, Heart } from "lucide-react";
+import { ExternalLink, Github, Calendar, Rocket, CreditCard, Smartphone, Target, Zap, Shield, Clock, Lock, BarChart3, Sparkles, Heart, TrendingUp, LineChart, PieChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const projects = [
+  {
+    title: "Market Simulator & Options Pricing Engine",
+    period: "August 2025",
+    description: "A sophisticated quantitative simulation framework that brings Wall Street analytics to life. Generates 10,000+ stochastic price paths to model real-world market behavior and option pricing dynamics.",
+    highlights: [
+      { icon: TrendingUp, text: "Engineered Monte Carlo simulations generating 10,000+ realistic price trajectories" },
+      { icon: LineChart, text: "Modeled volatility behavior and convergence properties under varying market assumptions" },
+      { icon: PieChart, text: "Visualized risk profiles to make probabilistic outcomes crystal clear for all audiences" }
+    ],
+    tech: ["Python", "NumPy", "SciPy", "Matplotlib"],
+    status: "Completed",
+    github: "https://github.com/123Alissaa/monte-carlo-options",
+    demo: null
+  },
   {
     title: "E-Commerce Store",
     period: "August 2025 - Present",
