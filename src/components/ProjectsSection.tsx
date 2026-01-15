@@ -1,7 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Calendar, Rocket, CreditCard, Smartphone, Target, Zap, Shield, Clock, Lock, BarChart3, Sparkles, Heart, TrendingUp, LineChart, PieChart } from "lucide-react";
+import { Github, Calendar, Rocket, CreditCard, Smartphone, Target, Zap, Shield, Clock, Lock, BarChart3, Sparkles, Heart, TrendingUp, LineChart, PieChart, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+import projectMonteCarlo from "@/assets/project-monte-carlo.png";
+import projectEcommerce from "@/assets/project-ecommerce.png";
+import projectInterview from "@/assets/project-interview.png";
+import projectBugtracker from "@/assets/project-bugtracker.png";
 
 const projects = [
   {
@@ -15,8 +20,9 @@ const projects = [
     ],
     tech: ["Python", "NumPy", "SciPy", "Matplotlib"],
     status: "Completed",
+    featured: true,
     github: "https://github.com/123Alissaa/monte-carlo-options",
-    demo: null
+    image: projectMonteCarlo
   },
   {
     title: "E-Commerce Store",
@@ -29,8 +35,9 @@ const projects = [
     ],
     tech: ["Next.js", "TypeScript", "GraphQL", "Prisma", "PostgreSQL"],
     status: "In Progress",
+    featured: false,
     github: "https://github.com/123Alissaa/ecommerce-store",
-    demo: null
+    image: projectEcommerce
   },
   {
     title: "AI Interview Coach",
@@ -43,8 +50,9 @@ const projects = [
     ],
     tech: ["Python", "Streamlit", "Ollama", "Mistral"],
     status: "Completed",
+    featured: false,
     github: "https://github.com/123Alissaa/ai-interview-coach",
-    demo: "https://ai-interview-coach-demo.streamlit.app"
+    image: projectInterview
   },
   {
     title: "Bug Tracker System",
@@ -57,8 +65,9 @@ const projects = [
     ],
     tech: ["React.js", "Node.js", "Express", "MongoDB", "JWT"],
     status: "Completed",
+    featured: false,
     github: "https://github.com/123Alissaa/bug-tracker",
-    demo: "https://bug-tracker-demo.netlify.app"
+    image: projectBugtracker
   }
 ];
 
@@ -98,89 +107,103 @@ const ProjectsSection = () => {
                          animate-fade-in-up cursor-pointer"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
+              {/* Featured badge */}
+              {project.featured && (
+                <div className="absolute top-4 right-4 z-10">
+                  <Badge className="bg-gradient-to-r from-primary to-secondary text-primary-foreground font-lato flex items-center gap-1 animate-pulse">
+                    <Star className="h-3 w-3 fill-current" />
+                    Featured
+                  </Badge>
+                </div>
+              )}
+              
               {/* Animated gradient background */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               {/* Decorative corner flourish */}
-              <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-30 transition-all duration-500 group-hover:rotate-12">
-                <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary transform rotate-45"></div>
+              <div className="absolute top-0 left-0 w-20 h-20 opacity-10 group-hover:opacity-30 transition-all duration-500 group-hover:-rotate-12">
+                <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary"></div>
               </div>
               
               {/* Floating sparkle */}
-              <div className="absolute top-6 left-6 opacity-0 group-hover:opacity-60 transition-all duration-700 transform group-hover:rotate-180">
+              <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-60 transition-all duration-700 transform group-hover:rotate-180">
                 <Sparkles className="h-4 w-4 text-primary" />
               </div>
-              
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-2xl font-playfair font-semibold text-foreground mb-2">
-                      {project.title}
-                    </CardTitle>
-                    <div className="flex items-center text-muted-foreground mb-4">
-                      <Calendar className="h-4 w-4 mr-2" />
-                      <span className="font-lato text-sm">{project.period}</span>
-                    </div>
+
+              <div className="grid md:grid-cols-5 gap-6">
+                {/* Project Image */}
+                <div className="md:col-span-2 p-6 pb-0 md:pb-6">
+                  <div className="relative overflow-hidden rounded-lg border border-card-border group-hover:border-primary/50 transition-all duration-500">
+                    <img 
+                      src={project.image} 
+                      alt={`${project.title} preview`}
+                      className="w-full h-48 md:h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  <Badge 
-                    variant={project.status === "In Progress" ? "default" : "secondary"}
-                    className="ml-4 font-lato"
-                  >
-                    {project.status}
-                  </Badge>
-                </div>
-                <CardDescription className="text-base font-lato leading-relaxed text-card-foreground">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
-              
-              <CardContent>
-                <ul className="space-y-4 mb-6">
-                  {project.highlights.map((highlight, idx) => (
-                    <li key={idx} className="flex items-start text-muted-foreground font-lato group/item hover:text-foreground transition-colors duration-300">
-                      <div className="mr-3 mt-1 p-1 rounded-full bg-primary/10 group-hover/item:bg-primary/20 transition-colors duration-300">
-                        <highlight.icon className="h-4 w-4 text-primary group-hover/item:scale-110 transition-transform duration-300" />
-                      </div>
-                      <span className="leading-relaxed">{highlight.text}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech, idx) => (
-                    <Badge key={idx} variant="outline" className="font-lato text-xs border-primary text-primary">
-                      {tech}
-                    </Badge>
-                  ))}
                 </div>
 
-                {/* Project Links */}
-                <div className="flex flex-wrap gap-3 pt-4 border-t border-card-border">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground 
-                               transition-all duration-300 group/btn hover:shadow-lg hover:-translate-y-0.5"
-                    onClick={() => window.open(project.github, '_blank')}
-                  >
-                    <Github className="h-4 w-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
-                    View Code
-                  </Button>
+                {/* Project Details */}
+                <div className="md:col-span-3">
+                  <CardHeader className="pb-4">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <CardTitle className="text-2xl font-playfair font-semibold text-foreground mb-2">
+                          {project.title}
+                        </CardTitle>
+                        <div className="flex items-center text-muted-foreground mb-4">
+                          <Calendar className="h-4 w-4 mr-2" />
+                          <span className="font-lato text-sm">{project.period}</span>
+                        </div>
+                      </div>
+                      <Badge 
+                        variant={project.status === "In Progress" ? "default" : "secondary"}
+                        className="ml-4 font-lato"
+                      >
+                        {project.status}
+                      </Badge>
+                    </div>
+                    <CardDescription className="text-base font-lato leading-relaxed text-card-foreground">
+                      {project.description}
+                    </CardDescription>
+                  </CardHeader>
                   
-                  {project.demo && (
-                    <Button
-                      variant="default"
-                      size="sm"
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 
-                                 transition-all duration-300 group/btn hover:shadow-lg hover:-translate-y-0.5"
-                      onClick={() => window.open(project.demo, '_blank')}
-                    >
-                      <ExternalLink className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
-                      Live Demo
-                    </Button>
-                  )}
+                  <CardContent>
+                    <ul className="space-y-3 mb-6">
+                      {project.highlights.map((highlight, idx) => (
+                        <li key={idx} className="flex items-start text-muted-foreground font-lato group/item hover:text-foreground transition-colors duration-300">
+                          <div className="mr-3 mt-1 p-1 rounded-full bg-primary/10 group-hover/item:bg-primary/20 transition-colors duration-300">
+                            <highlight.icon className="h-4 w-4 text-primary group-hover/item:scale-110 transition-transform duration-300" />
+                          </div>
+                          <span className="leading-relaxed text-sm">{highlight.text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tech.map((tech, idx) => (
+                        <Badge key={idx} variant="outline" className="font-lato text-xs border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-200">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {/* Project Links */}
+                    <div className="flex flex-wrap gap-3 pt-4 border-t border-card-border">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-primary text-primary hover:bg-primary hover:text-primary-foreground 
+                                   transition-all duration-300 group/btn hover:shadow-lg hover:-translate-y-0.5"
+                        onClick={() => window.open(project.github, '_blank')}
+                      >
+                        <Github className="h-4 w-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-300" />
+                        View Code
+                      </Button>
+                    </div>
+                  </CardContent>
                 </div>
-              </CardContent>
+              </div>
             </Card>
           ))}
         </div>
