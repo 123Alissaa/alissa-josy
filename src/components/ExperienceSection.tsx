@@ -50,6 +50,18 @@ const experiences = [
       { icon: Target, text: "Standardized operational workflows, reducing preparation time by 25%" },
       { icon: Users, text: "Facilitated seamless collaboration across multiple teams using integrated communication tools" }
     ]
+  },
+  {
+    title: "Intern Coordinator",
+    company: "Society of Asian Scientists and Engineers at USF",
+    period: "August 2024 - Present",
+    location: "Tampa, FL",
+    type: "Leadership",
+    description: [
+      { icon: Users, text: "Mentored and onboarded interns, fostering professional growth and meaningful engagement" },
+      { icon: Target, text: "Bridged communication between interns and leadership, boosting participation and retention" },
+      { icon: TrendingUp, text: "Designed initiatives that transformed intern experiences into lasting professional connections" }
+    ]
   }
 ];
 
