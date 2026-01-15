@@ -1,26 +1,39 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, BookOpen, Camera, Utensils } from "lucide-react";
+import { Heart, BookOpen, Video, ChefHat, Sparkles } from "lucide-react";
 import floatingFlorals from "@/assets/floating-florals.png";
+import { useState } from "react";
 
 const interests = [
   {
     icon: Heart,
     title: "Crocheting",
+    emoji: "🧶",
+    color: "from-pink-400 to-rose-500",
+    bgColor: "bg-pink-100",
     description: "Creating intricate patterns and cozy pieces, one stitch at a time"
   },
   {
-    icon: Utensils, 
+    icon: ChefHat, 
     title: "Cooking",
+    emoji: "🍳",
+    color: "from-orange-400 to-amber-500",
+    bgColor: "bg-orange-100",
     description: "Experimenting with flavors and bringing joy through homemade dishes"
   },
   {
     icon: BookOpen,
-    title: "Reading", 
+    title: "Reading",
+    emoji: "📖", 
+    color: "from-blue-400 to-indigo-500",
+    bgColor: "bg-blue-100",
     description: "Diving into worlds of knowledge, from technical papers to classic literature"
   },
   {
-    icon: Camera,
+    icon: Video,
     title: "Vlogging",
+    emoji: "🎥",
+    color: "from-purple-400 to-violet-500",
+    bgColor: "bg-purple-100",
     description: "Sharing life's moments and connecting with others through storytelling"
   }
 ];
@@ -93,26 +106,56 @@ const AboutSection = () => {
           <div className="grid grid-cols-2 gap-6 animate-fade-in-up-delay-1">
             {interests.map((interest, index) => {
               const IconComponent = interest.icon;
+              const [isHovered, setIsHovered] = useState(false);
               return (
                 <Card 
                   key={index}
                   className="bg-gradient-card border-card-border shadow-elegant hover:shadow-gold 
-                             transition-all duration-300 hover:-translate-y-1 group text-center
-                             animate-fade-in-up"
+                             transition-all duration-500 hover:-translate-y-2 group text-center
+                             animate-fade-in-up relative overflow-hidden cursor-pointer"
                   style={{ animationDelay: `${(index + 2) * 0.1}s` }}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
                 >
-                  <CardContent className="p-6">
+                  {/* Animated gradient background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${interest.color} opacity-0 
+                                  group-hover:opacity-10 transition-opacity duration-500`}></div>
+                  
+                  {/* Floating sparkles */}
+                  <div className={`absolute top-2 right-2 transition-all duration-300 
+                                  ${isHovered ? 'opacity-100 rotate-12' : 'opacity-0 rotate-0'}`}>
+                    <Sparkles className="h-4 w-4 text-primary" />
+                  </div>
+                  
+                  <CardContent className="p-6 relative">
+                    {/* Icon with emoji overlay */}
                     <div className="mb-4 flex justify-center">
-                      <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <IconComponent className="h-6 w-6 text-primary" />
+                      <div className={`relative p-4 rounded-2xl ${interest.bgColor} 
+                                      group-hover:scale-110 transition-all duration-500
+                                      group-hover:rotate-3`}>
+                        <IconComponent className={`h-7 w-7 bg-gradient-to-r ${interest.color} 
+                                                   bg-clip-text text-transparent`} 
+                                       style={{ color: 'transparent', background: `linear-gradient(135deg, var(--tw-gradient-stops))` }}
+                        />
+                        {/* Emoji badge */}
+                        <span className={`absolute -top-2 -right-2 text-xl transition-all duration-300
+                                         ${isHovered ? 'scale-125 animate-bounce' : 'scale-100'}`}>
+                          {interest.emoji}
+                        </span>
                       </div>
                     </div>
-                    <h3 className="font-playfair font-semibold text-foreground mb-2">
+                    
+                    <h3 className="font-playfair font-semibold text-foreground mb-2 
+                                   group-hover:text-primary transition-colors duration-300">
                       {interest.title}
                     </h3>
                     <p className="text-sm text-muted-foreground font-lato leading-relaxed">
                       {interest.description}
                     </p>
+                    
+                    {/* Cute underline on hover */}
+                    <div className={`h-0.5 bg-gradient-to-r ${interest.color} rounded-full mt-3 mx-auto
+                                    transition-all duration-500 ${isHovered ? 'w-16' : 'w-0'}`}></div>
                   </CardContent>
                 </Card>
               );
