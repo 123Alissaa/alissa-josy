@@ -1,15 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code, Wrench, Database, Sparkles, Star, Crown, Gem } from "lucide-react";
+import { Wrench, Database, Sparkles, Star, Crown, Gem, ChevronDown, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const skillCategories = [
-  {
-    title: "Languages",
-    icon: Code,
-    skills: ["Python", "Java", "C/C++", "SQL", "JavaScript", "TypeScript", "HTML", "CSS"],
-    description: "The vernacular of modern software development"
-  },
   {
     title: "Libraries & Frameworks", 
     icon: Wrench,
@@ -17,7 +11,9 @@ const skillCategories = [
       "React.js", "Next.js", "Node.js", "FastAPI", "WebSockets", "sklearn", "Pandas", "NumPy", 
       "NLTK", "Ollama", "OpenAI API", "Mistral", "Vertex AI"
     ],
-    description: "Tools of the trade for elegant solutions"
+    description: "Tools of the trade for elegant solutions",
+    color: "from-purple-500/20 to-pink-500/20",
+    accentColor: "purple"
   },
   {
     title: "Tools & Systems",
@@ -25,7 +21,9 @@ const skillCategories = [
     skills: [
       "Git", "GitHub", "PostgreSQL", "MongoDB", "VSCode", "IntelliJ", "Eclipse", "Jupyter Notebooks"
     ],
-    description: "The foundations of productive development"
+    description: "The foundations of productive development",
+    color: "from-blue-500/20 to-cyan-500/20",
+    accentColor: "blue"
   }
 ];
 
@@ -149,6 +147,146 @@ const AnimatedSkillCard = ({ name, level, delay }: {
   );
 };
 
+const ExpandableSkillCard = ({ category, index }: { 
+  category: typeof skillCategories[0]; 
+  index: number;
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const IconComponent = category.icon;
+
+  return (
+    <>
+      {/* Card Preview */}
+      <Card 
+        className={`bg-gradient-card border-card-border shadow-elegant hover:shadow-gold 
+                   transition-all duration-500 hover:-translate-y-2 group relative
+                   animate-fade-in-up overflow-hidden cursor-pointer`}
+        style={{ animationDelay: `${index * 0.2}s` }}
+        onClick={() => setIsExpanded(true)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Animated background gradient */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+        
+        {/* Decorative corner elements */}
+        <div className="absolute -top-2 -left-2 w-6 h-6 border-l-2 border-t-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
+        <div className="absolute -top-2 -right-2 w-6 h-6 border-r-2 border-t-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
+        <div className="absolute -bottom-2 -left-2 w-6 h-6 border-l-2 border-b-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
+        <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-2 border-b-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
+        
+        <CardHeader className="text-center pb-4 relative">
+          <div className="mb-4 flex justify-center">
+            <div className={`p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${isHovered ? 'animate-pulse' : ''}`}>
+              <IconComponent className="h-8 w-8 text-primary" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-playfair font-semibold text-foreground">
+            {category.title}
+          </CardTitle>
+          <p className="text-sm text-muted-foreground font-lato italic mb-2">
+            {category.description}
+          </p>
+          
+          {/* Preview badges */}
+          <div className="flex flex-wrap gap-1.5 justify-center mt-3">
+            {category.skills.slice(0, 3).map((skill, idx) => (
+              <Badge 
+                key={idx} 
+                variant="outline" 
+                className="border-primary/50 text-primary/80 text-xs"
+              >
+                {skill}
+              </Badge>
+            ))}
+            {category.skills.length > 3 && (
+              <Badge 
+                variant="outline" 
+                className="border-secondary/50 text-secondary font-medium text-xs"
+              >
+                +{category.skills.length - 3} more
+              </Badge>
+            )}
+          </div>
+        </CardHeader>
+        
+        <CardContent className="relative pt-0">
+          <div className={`flex items-center justify-center gap-2 text-primary font-lato text-sm transition-all duration-300 ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-60'}`}>
+            <span>Click to explore</span>
+            <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isHovered ? 'translate-y-1' : ''}`} />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Expanded Modal */}
+      {isExpanded && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setIsExpanded(false)}
+        >
+          <div 
+            className="bg-gradient-card border-2 border-primary/30 rounded-3xl max-w-lg w-full max-h-[80vh] overflow-y-auto shadow-gold animate-scale-in relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Decorative corner elements */}
+            <div className="absolute -top-2 -left-2 w-8 h-8 border-l-2 border-t-2 border-primary opacity-60"></div>
+            <div className="absolute -top-2 -right-2 w-8 h-8 border-r-2 border-t-2 border-primary opacity-60"></div>
+            <div className="absolute -bottom-2 -left-2 w-8 h-8 border-l-2 border-b-2 border-primary opacity-60"></div>
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 border-r-2 border-b-2 border-primary opacity-60"></div>
+            
+            {/* Close button */}
+            <button 
+              onClick={() => setIsExpanded(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors z-10 group"
+            >
+              <X className="h-5 w-5 text-primary group-hover:rotate-90 transition-transform duration-300" />
+            </button>
+
+            <div className="p-8">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <div className="mb-4 flex justify-center">
+                  <div className={`p-5 rounded-full bg-gradient-to-br ${category.color} border-2 border-primary/30`}>
+                    <IconComponent className="h-10 w-10 text-primary" />
+                  </div>
+                </div>
+                <h3 className="text-3xl font-playfair font-bold text-foreground mb-2">
+                  {category.title}
+                </h3>
+                <p className="text-muted-foreground font-lato italic">
+                  {category.description}
+                </p>
+              </div>
+
+              {/* Skills Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {category.skills.map((skill, idx) => (
+                  <div
+                    key={idx}
+                    className="group relative p-3 rounded-xl bg-primary/5 border border-primary/20 
+                             hover:bg-primary/15 hover:border-primary/40 transition-all duration-300
+                             hover:-translate-y-1 hover:shadow-lg cursor-default animate-fade-in"
+                    style={{ animationDelay: `${idx * 50}ms` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300"></div>
+                    <div className="relative flex items-center gap-2">
+                      <Sparkles className="h-3 w-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <span className="font-lato text-sm text-foreground group-hover:text-primary transition-colors duration-300">
+                        {skill}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 const SkillsSection = () => {
   const advancedSkills = proficiencySkills.filter(s => s.level === "Advanced");
   const intermediateSkills = proficiencySkills.filter(s => s.level === "Intermediate");
@@ -238,63 +376,15 @@ const SkillsSection = () => {
           </Card>
         </div>
 
-        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => {
-            const IconComponent = category.icon;
-            return (
-              <Card 
-                key={index}
-                className="bg-gradient-card border-card-border shadow-elegant hover:shadow-gold 
-                           transition-all duration-500 hover:-translate-y-2 group relative
-                           animate-fade-in-up overflow-hidden"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Decorative corner elements */}
-                <div className="absolute -top-2 -left-2 w-6 h-6 border-l-2 border-t-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 border-r-2 border-t-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
-                <div className="absolute -bottom-2 -left-2 w-6 h-6 border-l-2 border-b-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
-                <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-2 border-b-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
-                
-                <CardHeader className="text-center pb-4 relative">
-                  <div className="mb-4 flex justify-center">
-                    <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
-                      <IconComponent className="h-8 w-8 text-primary" />
-                    </div>
-                  </div>
-                  <CardTitle className="text-2xl font-playfair font-semibold text-foreground">
-                    {category.title}
-                  </CardTitle>
-                  <p className="text-sm text-muted-foreground font-lato italic">
-                    {category.description}
-                  </p>
-                </CardHeader>
-                
-                <CardContent className="relative">
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {category.skills.map((skill, idx) => (
-                      <Badge 
-                        key={idx} 
-                        variant="outline" 
-                        className="border-primary text-primary hover:bg-primary hover:text-primary-foreground 
-                                   transition-all duration-300 font-lato text-xs cursor-pointer
-                                   hover:scale-110 hover:-translate-y-0.5 hover:shadow-md"
-                        style={{ animationDelay: `${idx * 0.05}s` }}
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+        {/* Libraries & Frameworks + Tools & Systems - Clickable Cards */}
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          {skillCategories.map((category, index) => (
+            <ExpandableSkillCard key={index} category={category} index={index} />
+          ))}
         </div>
 
         {/* Additional highlight section */}
-        <div className="mt-16 text-center animate-fade-in-up-delay-2">
+        <div className="text-center animate-fade-in-up-delay-2">
           <Card className="bg-gradient-card border-card-border shadow-elegant max-w-4xl mx-auto relative overflow-hidden group hover:shadow-gold transition-all duration-500">
             {/* Floating sparkles */}
             <div className="absolute top-4 left-6 opacity-0 group-hover:opacity-60 transition-all duration-700">
