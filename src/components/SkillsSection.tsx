@@ -120,7 +120,7 @@ const AnimatedSkillCard = ({ name, level, delay }: {
               <IconComponent className={`h-4 w-4 ${config.textColor}`} />
             </div>
             <div className="flex-1 min-w-0">
-              <h4 className="font-playfair font-semibold text-foreground text-sm md:text-base truncate group-hover:text-primary transition-colors duration-300">
+              <h4 className="font-playfair font-semibold text-foreground text-sm md:text-base group-hover:text-primary transition-colors duration-300">
                 {name}
               </h4>
               <span className={`text-xs font-lato ${config.textColor} opacity-80`}>{config.label}</span>
