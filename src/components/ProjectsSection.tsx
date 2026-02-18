@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Github, Calendar, Rocket, CreditCard, Smartphone, Target, Zap, Shield, Clock, Lock, BarChart3, Sparkles, Heart, TrendingUp, LineChart, PieChart, Star, X, Users, Wifi, Database, Timer } from "lucide-react";
+import { Github, Calendar, Rocket, CreditCard, Smartphone, Target, Zap, Shield, Clock, Lock, BarChart3, Sparkles, Heart, TrendingUp, LineChart, PieChart, Star, X, Users, Wifi, Database, Timer, Brain, FlaskConical, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -9,6 +9,7 @@ import projectEcommerce from "@/assets/project-ecommerce.png";
 import projectInterview from "@/assets/project-interview.png";
 import projectBugtracker from "@/assets/project-bugtracker.png";
 import projectCollabpad from "@/assets/project-collabpad.png";
+import projectLlmEarnings from "@/assets/project-llm-earnings.png";
 
 const projects = [
   {
@@ -27,6 +28,22 @@ const projects = [
     featured: true,
     github: "https://github.com/123Alissaa/CollabPad",
     image: projectCollabpad
+  },
+  {
+    title: "LLM Earnings Analyzer",
+    subtitle: "AI-Powered Financial Analysis",
+    period: "2025",
+    description: "An AI-driven system that analyzes corporate earnings transcripts using large language models. Validates sentiment predictions against real stock movements, uncovering systematic biases and sector-specific patterns in model outputs.",
+    highlights: [
+      { icon: Brain, text: "Built AI system analyzing earnings transcripts with Groq API (Llama 3.3 70B); achieved 50% directional accuracy across 4 companies" },
+      { icon: FlaskConical, text: "Engineered data pipeline with yfinance; revealed sector-specific patterns (banking/social 100% vs tech/crypto 0%)" },
+      { icon: Activity, text: "Reduced analysis time 99% (4 hours → 10 seconds per transcript) with structured JSON output for financial metrics & risk factors" }
+    ],
+    tech: ["Python", "Groq API", "Llama 3.3 70B", "yfinance", "NLP"],
+    status: "Completed",
+    featured: false,
+    github: "https://github.com/123Alissaa/llm-earnings-analyzer",
+    image: projectLlmEarnings
   },
   {
     title: "Market Simulator",
