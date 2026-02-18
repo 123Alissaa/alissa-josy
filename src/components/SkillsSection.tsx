@@ -361,7 +361,7 @@ const SkillsSection = () => {
                   <h3 className="font-playfair font-semibold text-foreground text-lg">Intermediate</h3>
                   <div className="flex-1 h-px bg-gradient-to-r from-secondary/40 to-transparent ml-2"></div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                   {intermediateSkills.map((skill, index) => (
                     <AnimatedSkillCard 
                       key={skill.name} 
