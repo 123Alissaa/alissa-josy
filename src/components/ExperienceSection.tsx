@@ -1,9 +1,25 @@
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Calendar, Bot, Users, Crown, Wrench, Target, TrendingUp, Palette, Sparkles, Star, Zap, Briefcase, GraduationCap, Heart, Rocket, Award, ChevronRight } from "lucide-react";
+import { MapPin, Calendar, Bot, Users, Crown, Wrench, Target, TrendingUp, Palette, Sparkles, Star, Zap, Briefcase, GraduationCap, Heart, Rocket, Award, ChevronRight, Code2, Database, GitMerge } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const experiences = [
+  {
+    title: "Software Engineering Intern",
+    company: "Publix Technology",
+    period: "May 2026",
+    location: "Lakeland, FL",
+    type: "Internship",
+    typeIcon: Code2,
+    color: "from-green-500/20 to-emerald-500/20",
+    borderColor: "hover:border-green-400/50",
+    summary: "Building event-driven backend systems processing 10,000+ daily invoices",
+    description: [
+      { icon: Code2, text: "Developing backend systems in C# / .NET and SQL processing 10,000+ daily invoices" },
+      { icon: GitMerge, text: "Building event-driven data pipelines using Kafka for high-throughput warehouse operations" },
+      { icon: Database, text: "Utilizing Azure DevOps for CI/CD and applying spec-driven development across cross-functional engineering teams" }
+    ]
+  },
   {
     title: "AI Research Assistant",
     company: "RARE Lab at USF",
