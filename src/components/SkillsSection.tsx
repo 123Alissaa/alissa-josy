@@ -1,14 +1,24 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wrench, Database, Sparkles, Star, Crown, Gem, ChevronDown, X } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { Wrench, Database, Sparkles, ChevronDown, X, Code2 } from "lucide-react";
+import { useState } from "react";
 
 const skillCategories = [
+  {
+    title: "Languages",
+    icon: Code2,
+    skills: [
+      "Python", "Java", "C", "C++", "C#", "Go", "JavaScript", "TypeScript", "SQL", "HTML/CSS"
+    ],
+    description: "The dialects in which I write",
+    color: "from-amber-500/20 to-orange-500/20",
+    accentColor: "amber"
+  },
   {
     title: "Libraries & Frameworks", 
     icon: Wrench,
     skills: [
-      "React.js", "Next.js", "Node.js", "FastAPI", "WebSockets", "sklearn", "Pandas", "NumPy", 
+      "React.js", "Next.js", "Node.js", ".NET", "FastAPI", "WebSockets", "Kafka", "sklearn", "Pandas", "NumPy", 
       "NLTK", "Ollama", "OpenAI API", "Mistral", "Vertex AI"
     ],
     description: "Tools of the trade for elegant solutions",
@@ -19,7 +29,7 @@ const skillCategories = [
     title: "Tools & Systems",
     icon: Database,
     skills: [
-      "Git", "GitHub", "PostgreSQL", "MongoDB", "VSCode", "IntelliJ", "Eclipse", "Jupyter Notebooks"
+      "Git", "GitHub", "Docker", "Azure DevOps", "PostgreSQL", "MongoDB", "VSCode", "IntelliJ", "Eclipse", "Jupyter Notebooks"
     ],
     description: "The foundations of productive development",
     color: "from-blue-500/20 to-cyan-500/20",
