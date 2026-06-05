@@ -46,20 +46,38 @@ const projects = [
     image: projectLlmEarnings
   },
   {
-    title: "Market Simulator",
-    subtitle: "Options Pricing Engine",
-    period: "August 2025",
-    description: "A sophisticated quantitative simulation framework that brings Wall Street analytics to life. Generates 10,000+ stochastic price paths to model real-world market behavior and option pricing dynamics.",
+    title: "C++ Limit Order Book Engine",
+    subtitle: "High-Performance Matching Engine",
+    period: "April 2026",
+    description: "A blazing-fast C++17 matching engine modelling the same exchange mechanics that underlie Walleye's options market-making roots. Built for raw speed and correctness on real exchange semantics.",
     highlights: [
-      { icon: TrendingUp, text: "Engineered Monte Carlo simulations generating 10,000+ realistic price trajectories" },
-      { icon: LineChart, text: "Modeled volatility behavior and convergence properties under varying market assumptions" },
-      { icon: PieChart, text: "Visualized risk profiles to make probabilistic outcomes crystal clear for all audiences" }
+      { icon: Cpu, text: "Built matching engine in C++17 supporting limit, market, IOC, and Fill-Or-Kill orders with price-time priority" },
+      { icon: Gauge, text: "Achieves ~1M orders/second on Apple M3 with O(log n) cancel via hash-map lookup" },
+      { icon: Activity, text: "Modelled real exchange mechanics: bid-ask spread, mid-price, aggressor/resting distinction, FOK semantics" },
+      { icon: CheckCircle2, text: "Validated correctness with 9 assertion-based unit tests covering all order types and edge cases" }
     ],
-    tech: ["Python", "NumPy", "SciPy", "Matplotlib"],
+    tech: ["C++17", "C", "STL", "Hash Maps"],
+    status: "Completed",
+    featured: true,
+    github: "https://github.com/123Alissaa/orderbook-engine",
+    image: projectOrderbook
+  },
+  {
+    title: "Distributed Key-Value Store",
+    subtitle: "Redis-Compatible KV Cluster",
+    period: "April 2026",
+    description: "A Redis-compatible distributed key-value store built from scratch in Go. Implements the RESP protocol for full client compatibility and consistent hashing across a live multi-node cluster deployed on fly.io.",
+    highlights: [
+      { icon: Server, text: "Built Redis-compatible distributed KV store in Go; deployed live 3-node cluster on fly.io routing 10,000+ keys" },
+      { icon: Network, text: "Engineered consistent hashing with 150 virtual nodes, reducing key reshuffling from 75% to 25%" },
+      { icon: Gauge, text: "Benchmarked at 10,101 SET ops/sec and 21,707 GET ops/sec on read replicas" },
+      { icon: GitBranch, text: "Implemented AOF write-ahead logging for crash recovery and async replication across 6-node cluster" }
+    ],
+    tech: ["Go", "TCP Sockets", "RESP Protocol", "Consistent Hashing", "Docker", "fly.io"],
     status: "Completed",
     featured: false,
-    github: "https://github.com/123Alissaa/monte-carlo-options",
-    image: projectMonteCarlo
+    github: "https://github.com/123Alissaa/distributed-kv-store",
+    image: projectKvstore
   },
   {
     title: "E-Commerce Store",
@@ -92,22 +110,6 @@ const projects = [
     featured: false,
     github: "https://github.com/123Alissaa/ai-interview-coach",
     image: projectInterview
-  },
-  {
-    title: "Bug Tracker",
-    subtitle: "Team Workflow System",
-    period: "January 2025",
-    description: "Streamlined development workflows for teams with intelligent bug management. Features role-based access and automated assignment systems.",
-    highlights: [
-      { icon: Clock, text: "Reduced bug resolution time by 40% through smart prioritization" },
-      { icon: Lock, text: "Implemented secure JWT authentication with role-based permissions" },
-      { icon: BarChart3, text: "Enhanced team productivity with real-time status tracking" }
-    ],
-    tech: ["React.js", "Node.js", "Express", "MongoDB", "JWT"],
-    status: "Completed",
-    featured: false,
-    github: "https://github.com/123Alissaa/bug-tracker",
-    image: projectBugtracker
   }
 ];
 
