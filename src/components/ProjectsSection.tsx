@@ -1,15 +1,15 @@
 import { Badge } from "@/components/ui/badge";
-import { Github, Calendar, Rocket, CreditCard, Smartphone, Target, Zap, Shield, Clock, Lock, BarChart3, Sparkles, Heart, TrendingUp, LineChart, PieChart, Star, X, Users, Wifi, Database, Timer, Brain, FlaskConical, Activity } from "lucide-react";
+import { Github, Calendar, Rocket, CreditCard, Smartphone, Target, Zap, Shield, Sparkles, Heart, Star, Users, Wifi, Timer, Brain, FlaskConical, Activity, Cpu, Gauge, CheckCircle2, Network, Server, GitBranch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
-import projectMonteCarlo from "@/assets/project-monte-carlo.png";
 import projectEcommerce from "@/assets/project-ecommerce.png";
 import projectInterview from "@/assets/project-interview.png";
-import projectBugtracker from "@/assets/project-bugtracker.png";
 import projectCollabpad from "@/assets/project-collabpad.png";
 import projectLlmEarnings from "@/assets/project-llm-earnings.png";
+import projectOrderbook from "@/assets/project-orderbook.png";
+import projectKvstore from "@/assets/project-kvstore.png";
 
 const projects = [
   {
