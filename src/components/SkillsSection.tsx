@@ -179,9 +179,6 @@ const ExpandableSkillCard = ({ category, index }: {
 };
 
 const SkillsSection = () => {
-  const advancedSkills = proficiencySkills.filter(s => s.level === "Advanced");
-  const intermediateSkills = proficiencySkills.filter(s => s.level === "Intermediate");
-
   return (
     <section id="skills" className="py-20 px-6 relative">
       {/* Floating decorative elements */}
@@ -208,71 +205,13 @@ const SkillsSection = () => {
           </p>
         </div>
 
-        {/* Proficiency Levels - Two Column Layout */}
-        <div className="mb-16 animate-fade-in-up">
-          <Card className="bg-gradient-card border-card-border shadow-elegant max-w-4xl mx-auto relative overflow-hidden">
-            {/* Decorative corner elements */}
-            <div className="absolute -top-2 -left-2 w-6 h-6 border-l-2 border-t-2 border-primary opacity-40"></div>
-            <div className="absolute -top-2 -right-2 w-6 h-6 border-r-2 border-t-2 border-primary opacity-40"></div>
-            <div className="absolute -bottom-2 -left-2 w-6 h-6 border-l-2 border-b-2 border-primary opacity-40"></div>
-            <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-2 border-b-2 border-primary opacity-40"></div>
-            
-            <CardHeader className="text-center pb-6">
-              <CardTitle className="text-2xl font-playfair font-semibold text-foreground flex items-center justify-center gap-3">
-                <Crown className="h-5 w-5 text-primary" />
-                Language Proficiency
-                <Crown className="h-5 w-5 text-primary" />
-              </CardTitle>
-            </CardHeader>
-            
-            <CardContent className="space-y-8">
-              {/* Advanced Skills */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Crown className="h-4 w-4 text-primary" />
-                  <h3 className="font-playfair font-semibold text-foreground text-lg">Advanced</h3>
-                  <div className="flex-1 h-px bg-gradient-to-r from-primary/40 to-transparent ml-2"></div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {advancedSkills.map((skill, index) => (
-                    <AnimatedSkillCard 
-                      key={skill.name} 
-                      name={skill.name} 
-                      level={skill.level} 
-                      delay={index * 100}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Intermediate Skills */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Gem className="h-4 w-4 text-secondary" />
-                  <h3 className="font-playfair font-semibold text-foreground text-lg">Intermediate</h3>
-                  <div className="flex-1 h-px bg-gradient-to-r from-secondary/40 to-transparent ml-2"></div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                  {intermediateSkills.map((skill, index) => (
-                    <AnimatedSkillCard 
-                      key={skill.name} 
-                      name={skill.name} 
-                      level={skill.level} 
-                      delay={300 + index * 100}
-                    />
-                  ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Libraries & Frameworks + Tools & Systems - Clickable Cards */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        {/* Languages + Libraries & Frameworks + Tools & Systems - Clickable Cards */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {skillCategories.map((category, index) => (
             <ExpandableSkillCard key={index} category={category} index={index} />
           ))}
         </div>
+
 
         {/* Additional highlight section */}
         <div className="text-center animate-fade-in-up-delay-2">
