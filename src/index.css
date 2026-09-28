@@ -2,202 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Bridgerton Color Palette */
-    --background: 210 29% 84%; /* Powder blue #B0C4DE */
-    --background-gradient-end: 45 50% 97%; /* Ivory #FAF9F6 */
-    --foreground: 222.2 84% 8%;
-
-    --card: 45 50% 97%; /* Ivory cards */
-    --card-foreground: 222.2 84% 8%;
-    --card-border: 35 45% 65%; /* Enhanced metallic gold */
-
-    --popover: 45 50% 97%;
-    --popover-foreground: 222.2 84% 8%;
-
-    --primary: 35 45% 65%; /* Enhanced metallic gold */
-    --primary-foreground: 45 50% 97%;
-
-    --secondary: 333 25% 81%; /* Pastel rose #E6B7C8 */
-    --secondary-foreground: 222.2 84% 4.9%;
-
-    --muted: 300 24% 85%; /* Muted lavender #D8BFD8 */
-    --muted-foreground: 215.4 16.3% 35%;
-
-    --accent: 300 24% 85%; /* Muted lavender */
-    --accent-foreground: 222.2 84% 4.9%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 35 45% 65%; /* Enhanced gold borders */
-    --input: 45 50% 97%;
-    --ring: 35 45% 65%;
-
-    --radius: 0.75rem; /* More rounded for elegant feel */
-
-    /* Bridgerton-specific design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(210 29% 84%), hsl(45 50% 97%));
-    --gradient-card: linear-gradient(145deg, hsl(45 50% 97%), hsl(45 50% 95%));
-    --shadow-elegant: 0 8px 32px -8px hsl(35 45% 65% / 0.3);
-    --shadow-gold: 0 0 20px hsl(35 45% 65% / 0.4);
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --sidebar-background: 45 50% 97%;
-    --sidebar-foreground: 222.2 84% 4.9%;
-    --sidebar-primary: 35 45% 65%;
-    --sidebar-primary-foreground: 45 50% 97%;
-    --sidebar-accent: 300 24% 85%;
-    --sidebar-accent-foreground: 222.2 84% 8%;
-    --sidebar-border: 35 45% 65%;
-    --sidebar-ring: 35 45% 65%;
+    --background: 42 33% 97%;
+    --background-gradient-end: 42 33% 97%;
+    --foreground: 210 11% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 15%;
+    --card-border: 40 12% 82%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 15%;
+    --primary: 168 40% 28%;
+    --primary-foreground: 42 33% 97%;
+    --secondary: 38 24% 92%;
+    --secondary-foreground: 210 11% 15%;
+    --muted: 40 18% 92%;
+    --muted-foreground: 210 7% 38%;
+    --accent: 168 22% 90%;
+    --accent-foreground: 168 40% 22%;
+    --destructive: 0 72% 46%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 40 12% 82%;
+    --input: 40 12% 82%;
+    --ring: 168 40% 28%;
+    --radius: 0.375rem;
+    --sidebar-background: 42 33% 97%;
+    --sidebar-foreground: 210 11% 15%;
+    --sidebar-primary: 168 40% 28%;
+    --sidebar-primary-foreground: 42 33% 97%;
+    --sidebar-accent: 38 24% 92%;
+    --sidebar-accent-foreground: 210 11% 15%;
+    --sidebar-border: 40 12% 82%;
+    --sidebar-ring: 168 40% 28%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  * { @apply border-border; }
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-gradient-to-br from-background to-background-gradient-end text-foreground;
-    font-family: 'Lato', sans-serif;
-    min-height: 100vh;
+    @apply bg-background text-foreground antialiased;
+    font-family: "Lato", sans-serif;
+    min-width: 320px;
   }
 
-  .font-playfair {
-    font-family: 'Playfair Display', serif;
+  ::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
   }
 
-  .font-lato {
-    font-family: 'Lato', sans-serif;
+  :focus-visible { outline-offset: 3px; }
+}
+
+@layer components {
+  .font-playfair { font-family: "Playfair Display", serif; }
+  .font-lato { font-family: "Lato", sans-serif; }
+  .section-label { @apply mb-3 text-xs font-semibold uppercase text-primary; }
+  .section-title { @apply font-playfair text-4xl font-semibold leading-tight text-foreground md:text-5xl; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-
-  /* Bridgerton animations */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-shimmer {
-    animation: shimmer 2s ease-in-out infinite;
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  .animate-fade-in-up-delay-1 {
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  .animate-fade-in-up-delay-2 {
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
-    opacity: 0;
-    transform: translateY(30px);
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes shimmer {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Interactive Elements */
-.story-link {
-  @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
-}
-
-.hover-scale {
-  @apply transition-transform duration-200 hover:scale-105;
-}
-
-/* Floating animations */
-.float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Gentle glow effect */
-.glow {
-  box-shadow: 0 0 20px hsla(var(--primary), 0.3);
-}
-
-.glow-hover:hover {
-  box-shadow: 0 0 30px hsla(var(--primary), 0.4);
-}
-
-/* Elegant scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary));
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.8);
 }

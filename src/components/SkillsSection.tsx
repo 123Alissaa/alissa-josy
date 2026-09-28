@@ -1,246 +1,29 @@
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wrench, Database, Sparkles, ChevronDown, X, Code2 } from "lucide-react";
-import { useState } from "react";
-
-const skillCategories = [
-  {
-    title: "Languages",
-    icon: Code2,
-    skills: [
-      "Python", "Java", "C", "C++", "C#", "Go", "JavaScript", "TypeScript", "SQL", "HTML/CSS"
-    ],
-    description: "The dialects in which I write",
-    color: "from-amber-500/20 to-orange-500/20",
-    accentColor: "amber"
-  },
-  {
-    title: "Libraries & Frameworks", 
-    icon: Wrench,
-    skills: [
-      "React.js", "Next.js", "Node.js", ".NET", "FastAPI", "WebSockets", "Kafka", "sklearn", "Pandas", "NumPy", 
-      "NLTK", "Ollama", "OpenAI API", "Mistral", "Vertex AI"
-    ],
-    description: "Tools of the trade for elegant solutions",
-    color: "from-purple-500/20 to-pink-500/20",
-    accentColor: "purple"
-  },
-  {
-    title: "Tools & Systems",
-    icon: Database,
-    skills: [
-      "Git", "GitHub", "Docker", "Azure DevOps", "PostgreSQL", "MongoDB", "VSCode", "IntelliJ", "Eclipse", "Jupyter Notebooks"
-    ],
-    description: "The foundations of productive development",
-    color: "from-blue-500/20 to-cyan-500/20",
-    accentColor: "blue"
-  }
+const skillGroups = [
+  { label: "Languages", items: "Python, Java, Go, C, C++, C#, JavaScript, TypeScript, SQL, HTML/CSS" },
+  { label: "Backend & systems", items: ".NET, FastAPI, Node.js, Kafka, WebSockets, PostgreSQL, SQL Server, RESP" },
+  { label: "AI & data", items: "Pandas, NumPy, Gemini, Groq, Ollama, Mistral, Vertex AI" },
+  { label: "Web & tools", items: "React, Next.js, Git, GitHub, Docker, Azure DevOps, Jupyter" },
 ];
 
-
-const ExpandableSkillCard = ({ category, index }: { 
-  category: typeof skillCategories[0]; 
-  index: number;
-}) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const IconComponent = category.icon;
-
-  return (
-    <>
-      {/* Card Preview */}
-      <Card 
-        className={`bg-gradient-card border-card-border shadow-elegant hover:shadow-gold 
-                   transition-all duration-500 hover:-translate-y-2 group relative
-                   animate-fade-in-up overflow-hidden cursor-pointer`}
-        style={{ animationDelay: `${index * 0.2}s` }}
-        onClick={() => setIsExpanded(true)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Animated background gradient */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-        
-        {/* Decorative corner elements */}
-        <div className="absolute -top-2 -left-2 w-6 h-6 border-l-2 border-t-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
-        <div className="absolute -top-2 -right-2 w-6 h-6 border-r-2 border-t-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
-        <div className="absolute -bottom-2 -left-2 w-6 h-6 border-l-2 border-b-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
-        <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-2 border-b-2 border-primary opacity-40 group-hover:opacity-70 transition-opacity"></div>
-        
-        <CardHeader className="text-center pb-4 relative">
-          <div className="mb-4 flex justify-center">
-            <div className={`p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${isHovered ? 'animate-pulse' : ''}`}>
-              <IconComponent className="h-8 w-8 text-primary" />
-            </div>
-          </div>
-          <CardTitle className="text-2xl font-playfair font-semibold text-foreground">
-            {category.title}
-          </CardTitle>
-          <p className="text-sm text-muted-foreground font-lato italic mb-2">
-            {category.description}
-          </p>
-          
-          {/* Preview badges */}
-          <div className="flex flex-wrap gap-1.5 justify-center mt-3">
-            {category.skills.slice(0, 3).map((skill, idx) => (
-              <Badge 
-                key={idx} 
-                variant="outline" 
-                className="border-primary/50 text-primary/80 text-xs"
-              >
-                {skill}
-              </Badge>
-            ))}
-            {category.skills.length > 3 && (
-              <Badge 
-                variant="outline" 
-                className="border-secondary/50 text-secondary font-medium text-xs"
-              >
-                +{category.skills.length - 3} more
-              </Badge>
-            )}
-          </div>
-        </CardHeader>
-        
-        <CardContent className="relative pt-0">
-          <div className={`flex items-center justify-center gap-2 text-primary font-lato text-sm transition-all duration-300 ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-60'}`}>
-            <span>Click to explore</span>
-            <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isHovered ? 'translate-y-1' : ''}`} />
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Expanded Modal */}
-      {isExpanded && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
-          onClick={() => setIsExpanded(false)}
-        >
-          <div 
-            className="bg-gradient-card border-2 border-primary/30 rounded-3xl max-w-lg w-full max-h-[80vh] overflow-y-auto shadow-gold animate-scale-in relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Decorative corner elements */}
-            <div className="absolute -top-2 -left-2 w-8 h-8 border-l-2 border-t-2 border-primary opacity-60"></div>
-            <div className="absolute -top-2 -right-2 w-8 h-8 border-r-2 border-t-2 border-primary opacity-60"></div>
-            <div className="absolute -bottom-2 -left-2 w-8 h-8 border-l-2 border-b-2 border-primary opacity-60"></div>
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 border-r-2 border-b-2 border-primary opacity-60"></div>
-            
-            {/* Close button */}
-            <button 
-              onClick={() => setIsExpanded(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors z-10 group"
-            >
-              <X className="h-5 w-5 text-primary group-hover:rotate-90 transition-transform duration-300" />
-            </button>
-
-            <div className="p-8">
-              {/* Header */}
-              <div className="text-center mb-8">
-                <div className="mb-4 flex justify-center">
-                  <div className={`p-5 rounded-full bg-gradient-to-br ${category.color} border-2 border-primary/30`}>
-                    <IconComponent className="h-10 w-10 text-primary" />
-                  </div>
-                </div>
-                <h3 className="text-3xl font-playfair font-bold text-foreground mb-2">
-                  {category.title}
-                </h3>
-                <p className="text-muted-foreground font-lato italic">
-                  {category.description}
-                </p>
-              </div>
-
-              {/* Skills Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {category.skills.map((skill, idx) => (
-                  <div
-                    key={idx}
-                    className="group relative p-3 rounded-xl bg-primary/5 border border-primary/20 
-                             hover:bg-primary/15 hover:border-primary/40 transition-all duration-300
-                             hover:-translate-y-1 hover:shadow-lg cursor-default animate-fade-in"
-                    style={{ animationDelay: `${idx * 50}ms` }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300"></div>
-                    <div className="relative flex items-center gap-2">
-                      <Sparkles className="h-3 w-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <span className="font-lato text-sm text-foreground group-hover:text-primary transition-colors duration-300">
-                        {skill}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+const SkillsSection = () => (
+  <section className="py-16 md:py-20" aria-labelledby="skills-heading">
+    <div className="mx-auto max-w-6xl px-5 md:px-8">
+      <div className="grid gap-8 md:grid-cols-[0.8fr_2fr]">
+        <div>
+          <p className="section-label">Technical toolkit</p>
+          <h2 id="skills-heading" className="font-playfair text-3xl font-semibold text-foreground">Skills</h2>
         </div>
-      )}
-    </>
-  );
-};
-
-const SkillsSection = () => {
-  return (
-    <section id="skills" className="py-20 px-6 relative">
-      {/* Floating decorative elements */}
-      <div className="absolute top-10 left-8 opacity-15 animate-pulse">
-        <Sparkles className="h-6 w-6 text-primary" />
-      </div>
-      <div className="absolute bottom-20 right-12 opacity-20 animate-bounce" style={{animationDelay: '1s'}}>
-        <Sparkles className="h-5 w-5 text-secondary" />
-      </div>
-      
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6 hover:text-primary transition-colors duration-500">
-            Technical Accomplishments
-          </h2>
-          <div className="flex items-center justify-center space-x-4 text-primary mb-8">
-            <div className="h-px bg-gradient-to-r from-transparent via-primary to-transparent w-20 animate-pulse"></div>
-            <Sparkles className="text-xl animate-spin" style={{animationDuration: '3s'}} />
-            <div className="h-px bg-gradient-to-r from-transparent via-primary to-transparent w-20 animate-pulse"></div>
-          </div>
-          <p className="text-lg text-muted-foreground font-lato max-w-2xl mx-auto italic">
-            "A lady of distinguished technical abilities, well-versed in the most elegant 
-            programming languages and modern frameworks..."
-          </p>
-        </div>
-
-        {/* Languages + Libraries & Frameworks + Tools & Systems - Clickable Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {skillCategories.map((category, index) => (
-            <ExpandableSkillCard key={index} category={category} index={index} />
+        <dl className="grid gap-x-10 gap-y-7 sm:grid-cols-2">
+          {skillGroups.map((group) => (
+            <div key={group.label}>
+              <dt className="text-sm font-semibold text-foreground">{group.label}</dt>
+              <dd className="mt-2 text-sm leading-6 text-muted-foreground">{group.items}</dd>
+            </div>
           ))}
-        </div>
-
-
-        {/* Additional highlight section */}
-        <div className="text-center animate-fade-in-up-delay-2">
-          <Card className="bg-gradient-card border-card-border shadow-elegant max-w-4xl mx-auto relative overflow-hidden group hover:shadow-gold transition-all duration-500">
-            {/* Floating sparkles */}
-            <div className="absolute top-4 left-6 opacity-0 group-hover:opacity-60 transition-all duration-700">
-              <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-            </div>
-            <div className="absolute bottom-4 right-6 opacity-0 group-hover:opacity-60 transition-all duration-700" style={{animationDelay: '0.5s'}}>
-              <Sparkles className="h-4 w-4 text-secondary animate-pulse" />
-            </div>
-            
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-playfair font-semibold text-foreground mb-4">
-                Areas of Interest & Expertise
-              </h3>
-              <p className="text-muted-foreground font-lato leading-relaxed text-lg">
-                Passionate about <span className="text-primary font-medium hover:underline cursor-pointer transition-all">AI/ML applications</span>, 
-                <span className="text-primary font-medium hover:underline cursor-pointer transition-all"> full-stack development</span>, and 
-                <span className="text-primary font-medium hover:underline cursor-pointer transition-all"> real-time collaborative systems</span>. 
-                Always seeking to bridge the gap between elegant code architecture and 
-                meaningful real-world impact.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+        </dl>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default SkillsSection;
