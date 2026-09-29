@@ -1,3 +1,5 @@
+import Reveal from "@/components/Reveal";
+
 const experiences = [
   {
     role: "Software Engineering Intern",
@@ -36,14 +38,14 @@ const experiences = [
 const ExperienceSection = () => (
   <section id="experience" className="scroll-mt-16 border-y border-border bg-secondary py-20 md:py-28">
     <div className="mx-auto max-w-6xl px-5 md:px-8">
-      <div className="mb-12 max-w-2xl">
+      <Reveal className="mb-12 max-w-2xl">
         <p className="section-label">Experience</p>
         <h2 className="section-title">Production, research, and operational impact.</h2>
-      </div>
+      </Reveal>
 
       <div className="divide-y divide-border border-y border-border">
         {experiences.map((experience, index) => (
-          <article key={experience.company} className="grid gap-5 py-8 md:grid-cols-[72px_1fr_1.6fr] md:gap-8 md:py-10">
+          <Reveal as="article" key={experience.company} delay={index === 0 ? 1 : index === 1 ? 2 : 3} className="grid gap-5 py-8 md:grid-cols-[72px_1fr_1.6fr] md:gap-8 md:py-10">
             <p className="text-sm font-semibold text-primary">0{index + 1}</p>
             <div>
               <h3 className="font-playfair text-2xl font-semibold leading-tight text-foreground">{experience.role}</h3>
@@ -56,7 +58,7 @@ const ExperienceSection = () => (
                 {experience.outcomes.map((outcome) => <li key={outcome} className="relative pl-5 before:absolute before:left-0 before:top-[0.65rem] before:h-1 before:w-1 before:rounded-full before:bg-primary">{outcome}</li>)}
               </ul>
             </div>
-          </article>
+          </Reveal>
         ))}
       </div>
     </div>
