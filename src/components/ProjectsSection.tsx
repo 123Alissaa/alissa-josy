@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Reveal from "@/components/Reveal";
 import projectKvstore from "@/assets/project-kvstore.png";
 import projectCollabpad from "@/assets/project-collabpad.png";
 import projectLlmEarnings from "@/assets/project-llm-earnings.png";
@@ -8,10 +8,10 @@ const featuredProjects = [
   {
     number: "01",
     title: "Distributed Key-Value Store",
-    description: "A Redis-compatible distributed store built in Go, with RESP support and a three-node cluster routing more than 10,000 keys.",
+    description: "A Redis-compatible Go store designed around distributed routing, persistence, and replication across a three-node cluster.",
     impact: [
-      "150 virtual nodes reduced key reshuffling from 75% to 25%.",
-      "AOF persistence and async replication; benchmarked at 10,101 SET and 21,707 GET operations per second.",
+      "Routed 10,000+ keys through 150 virtual nodes, reducing reshuffling from 75% to 25%.",
+      "Added AOF persistence and async replication; benchmarked 10,101 SET and 21,707 GET operations per second.",
     ],
     tech: "Go · TCP · RESP · Consistent hashing · Docker",
     image: projectKvstore,
@@ -20,10 +20,10 @@ const featuredProjects = [
   {
     number: "02",
     title: "CollabPad",
-    description: "A multiplayer code editor built with FastAPI, WebSockets, PostgreSQL, Next.js, and Monaco Editor.",
+    description: "A real-time collaborative editor built to keep code, cursors, and presence responsive under concurrent use.",
     impact: [
-      "Supported 25+ simultaneous users with sub-50ms keystroke latency.",
-      "Improved p99 message latency 73%, from 45ms to 12ms; load-tested at 3,500+ messages per minute.",
+      "Supported 25+ concurrent users with sub-50ms keystroke latency.",
+      "Cut p99 message latency 73%, from 45ms to 12ms, while load-testing 3,500+ messages per minute.",
     ],
     tech: "FastAPI · WebSockets · PostgreSQL · Next.js · Monaco",
     image: projectCollabpad,
@@ -32,10 +32,10 @@ const featuredProjects = [
   {
     number: "03",
     title: "LLM-Powered Financial Data Analyzer",
-    description: "A pipeline that analyzes earnings transcripts across four companies, extracting financial metrics, risks, and sentiment before validating results against market movements.",
+    description: "An earnings-transcript pipeline that structures financial signals for faster, evidence-based review.",
     impact: [
-      "Structured transcript analysis with Python, Pandas, SQL, and Groq.",
-      "Reduced analysis time from four hours to 10 seconds per transcript.",
+      "Extracted metrics, risks, and sentiment across four companies, then compared the outputs with subsequent stock movements.",
+      "Reduced transcript analysis time from four hours to 10 seconds.",
     ],
     tech: "Python · Pandas · SQL · Groq",
     image: projectLlmEarnings,
@@ -52,47 +52,42 @@ const additionalProjects = [
 const ProjectsSection = () => (
   <section id="work" className="scroll-mt-16 py-20 md:py-28">
     <div className="mx-auto max-w-6xl px-5 md:px-8">
-      <div className="mb-10 grid gap-4 border-b border-border pb-8 md:grid-cols-[1fr_1fr] md:items-end">
+      <Reveal className="mb-8 grid gap-4 border-b border-border pb-8 md:grid-cols-[1fr_1fr] md:items-end">
         <div>
           <p className="section-label">Selected work</p>
           <h2 className="section-title">Systems built for speed, scale, and clarity.</h2>
         </div>
         <p className="max-w-xl text-base leading-7 text-muted-foreground md:justify-self-end">
-          A focused selection of backend, distributed systems, and applied AI projects. All core outcomes remain visible without interaction.
+          A focused selection of backend, distributed systems, and applied AI projects.
         </p>
-      </div>
+      </Reveal>
 
-      <div className="space-y-6">
-        {featuredProjects.map((project) => (
-          <article key={project.number} className="grid overflow-hidden rounded-md border border-border bg-card transition duration-300 hover:-translate-y-1 hover:shadow-md md:grid-cols-[300px_1fr]">
-            <div className="flex items-center justify-center bg-muted p-8 md:min-h-[310px]">
-              <div className="aspect-square w-full max-w-[220px] overflow-hidden rounded-full border border-border bg-card p-2 shadow-sm">
+      <div>
+        {featuredProjects.map((project, index) => (
+          <Reveal as="article" key={project.number} className="project-row grid gap-8 border-b border-border py-12 first:pt-8 md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1.4fr)] md:items-center md:gap-14 lg:gap-20">
+            <div className={`relative mx-auto w-full max-w-[260px] ${index % 2 === 1 ? "md:order-2" : ""}`}>
+              <span aria-hidden="true" className="absolute -left-5 -top-8 -z-10 font-playfair text-[7rem] leading-none text-accent md:-left-10 md:text-[9rem]">{project.number}</span>
+              <div className="aspect-square overflow-hidden rounded-full border border-border bg-background p-2">
                 <img src={project.image} alt="" className="h-full w-full rounded-full object-cover" />
               </div>
             </div>
-            <div className="flex flex-col p-6 md:p-8 lg:p-10">
-              <div className="flex items-start justify-between gap-5">
-                <div>
-                  <p className="text-xs font-semibold text-primary">PROJECT {project.number}</p>
-                  <h3 className="mt-2 font-playfair text-3xl font-semibold leading-tight text-foreground">{project.title}</h3>
-                </div>
-                <Button asChild variant="ghost" size="icon" className="shrink-0 rounded-full" aria-label={`View ${project.title} on GitHub`}>
-                  <a href={project.repo} target="_blank" rel="noreferrer">
-                    <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
-                  </a>
-                </Button>
-              </div>
-              <p className="mt-5 max-w-2xl leading-7 text-muted-foreground">{project.description}</p>
-              <ul className="mt-5 space-y-3 text-sm leading-6 text-foreground">
+            <div className={index % 2 === 1 ? "md:order-1" : ""}>
+              <p className="text-xs font-semibold uppercase text-primary">Featured project {project.number}</p>
+              <h3 className="mt-2 font-playfair text-3xl font-semibold leading-tight text-foreground md:text-4xl">{project.title}</h3>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">{project.description}</p>
+              <ul className="mt-6 space-y-3 text-sm leading-6 text-foreground">
                 {project.impact.map((line) => <li key={line} className="border-l-2 border-primary pl-4">{line}</li>)}
               </ul>
-              <p className="mt-auto pt-7 text-xs font-semibold uppercase text-muted-foreground">{project.tech}</p>
+              <p className="mt-6 text-xs font-semibold uppercase leading-5 text-muted-foreground">{project.tech}</p>
+              <a href={project.repo} target="_blank" rel="noreferrer" className="story-link mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                View project on GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
             </div>
-          </article>
+          </Reveal>
         ))}
       </div>
 
-      <div className="mt-14">
+      <Reveal className="mt-16">
         <h3 className="font-playfair text-2xl font-semibold text-foreground">Additional work</h3>
         <div className="mt-5 divide-y divide-border border-y border-border">
           {additionalProjects.map((project) => (
@@ -103,16 +98,14 @@ const ProjectsSection = () => (
               </div>
               <p className="text-sm leading-6 text-muted-foreground">{project.detail}</p>
               {project.repo && (
-                <Button asChild variant="ghost" size="icon" className="rounded-full" aria-label={`View ${project.title} on GitHub`}>
-                  <a href={project.repo} target="_blank" rel="noreferrer">
-                    <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                  </a>
-                </Button>
+                <a href={project.repo} target="_blank" rel="noreferrer" aria-label={`View ${project.title} on GitHub`} className="inline-flex items-center gap-1 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                  GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
               )}
             </article>
           ))}
         </div>
-      </div>
+      </Reveal>
     </div>
   </section>
 );
