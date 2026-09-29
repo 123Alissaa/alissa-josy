@@ -7,7 +7,7 @@ const AboutSection = () => (
       </div>
       <div className="max-w-3xl">
         <p className="font-playfair text-2xl leading-relaxed text-foreground md:text-3xl">
-          I’m a Computer Science senior at the University of South Florida, graduating in May 2027 with a 3.78 GPA.
+          I’m a Computer Science senior at the University of South Florida, graduating in May 2027 with a 3.8 GPA.
         </p>
         <p className="mt-6 max-w-2xl leading-7 text-muted-foreground">
           I enjoy turning complex system problems into dependable, measurable software. Away from the keyboard, I’m usually crocheting or cooking.
