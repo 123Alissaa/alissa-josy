@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import projectKvstore from "@/assets/project-kvstore.png";
 import projectCollabpad from "@/assets/project-collabpad.png";
 import projectLlmEarnings from "@/assets/project-llm-earnings.png";
@@ -14,6 +15,7 @@ const featuredProjects = [
     ],
     tech: "Go · TCP · RESP · Consistent hashing · Docker",
     image: projectKvstore,
+    repo: "https://github.com/123Alissaa/key-value-store",
   },
   {
     number: "02",
@@ -25,6 +27,7 @@ const featuredProjects = [
     ],
     tech: "FastAPI · WebSockets · PostgreSQL · Next.js · Monaco",
     image: projectCollabpad,
+    repo: "https://github.com/123Alissaa/collab-pad",
   },
   {
     number: "03",
@@ -36,13 +39,14 @@ const featuredProjects = [
     ],
     tech: "Python · Pandas · SQL · Groq",
     image: projectLlmEarnings,
+    repo: "https://github.com/123Alissaa/llm-earnings-analyzer",
   },
 ];
 
 const additionalProjects = [
-  { title: "C++ Limit Order Book Engine", detail: "Price-time priority matching for limit, market, IOC, and fill-or-kill orders.", tech: "C++17 · C" },
-  { title: "E-Commerce Store", detail: "Full-stack commerce workflows with typed APIs, product search, and cart state.", tech: "Next.js · TypeScript · GraphQL · PostgreSQL" },
-  { title: "AI Interview Coach", detail: "Private, local-LLM interview practice with structured communication feedback.", tech: "Python · Streamlit · Ollama · Mistral" },
+  { title: "C++ Limit Order Book Engine", detail: "Price-time priority matching for limit, market, IOC, and fill-or-kill orders.", tech: "C++17 · C", repo: "https://github.com/123Alissaa/orderbook" },
+  { title: "E-Commerce Store", detail: "Full-stack commerce workflows with typed APIs, product search, and cart state.", tech: "Next.js · TypeScript · GraphQL · PostgreSQL", repo: null },
+  { title: "AI Interview Coach", detail: "Private, local-LLM interview practice with structured communication feedback.", tech: "Python · Streamlit · Ollama · Mistral", repo: "https://github.com/123Alissaa/ai-interview-coach" },
 ];
 
 const ProjectsSection = () => (
@@ -60,9 +64,11 @@ const ProjectsSection = () => (
 
       <div className="space-y-6">
         {featuredProjects.map((project) => (
-          <article key={project.number} className="grid overflow-hidden rounded-md border border-border bg-card md:grid-cols-[300px_1fr]">
-            <div className="aspect-[16/10] bg-muted md:aspect-auto md:min-h-[310px]">
-              <img src={project.image} alt="" className="h-full w-full object-cover" />
+          <article key={project.number} className="grid overflow-hidden rounded-md border border-border bg-card transition duration-300 hover:-translate-y-1 hover:shadow-md md:grid-cols-[300px_1fr]">
+            <div className="flex items-center justify-center bg-muted p-8 md:min-h-[310px]">
+              <div className="aspect-square w-full max-w-[220px] overflow-hidden rounded-full border border-border bg-card p-2 shadow-sm">
+                <img src={project.image} alt="" className="h-full w-full rounded-full object-cover" />
+              </div>
             </div>
             <div className="flex flex-col p-6 md:p-8 lg:p-10">
               <div className="flex items-start justify-between gap-5">
@@ -70,7 +76,11 @@ const ProjectsSection = () => (
                   <p className="text-xs font-semibold text-primary">PROJECT {project.number}</p>
                   <h3 className="mt-2 font-playfair text-3xl font-semibold leading-tight text-foreground">{project.title}</h3>
                 </div>
-                <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                <Button asChild variant="ghost" size="icon" className="shrink-0 rounded-full" aria-label={`View ${project.title} on GitHub`}>
+                  <a href={project.repo} target="_blank" rel="noreferrer">
+                    <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+                  </a>
+                </Button>
               </div>
               <p className="mt-5 max-w-2xl leading-7 text-muted-foreground">{project.description}</p>
               <ul className="mt-5 space-y-3 text-sm leading-6 text-foreground">
@@ -86,12 +96,19 @@ const ProjectsSection = () => (
         <h3 className="font-playfair text-2xl font-semibold text-foreground">Additional work</h3>
         <div className="mt-5 divide-y divide-border border-y border-border">
           {additionalProjects.map((project) => (
-            <article key={project.title} className="grid gap-2 py-5 sm:grid-cols-[1fr_1.4fr] sm:gap-8">
+            <article key={project.title} className="grid gap-2 py-5 sm:grid-cols-[1fr_1.4fr_auto] sm:items-center sm:gap-8">
               <div>
                 <h4 className="font-semibold text-foreground">{project.title}</h4>
                 <p className="mt-1 text-xs font-medium text-primary">{project.tech}</p>
               </div>
               <p className="text-sm leading-6 text-muted-foreground">{project.detail}</p>
+              {project.repo && (
+                <Button asChild variant="ghost" size="icon" className="rounded-full" aria-label={`View ${project.title} on GitHub`}>
+                  <a href={project.repo} target="_blank" rel="noreferrer">
+                    <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                </Button>
+              )}
             </article>
           ))}
         </div>
