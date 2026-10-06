@@ -38,7 +38,7 @@ const HeroSection = () => (
 
       <div className="order-first mx-auto w-full max-w-[280px] md:order-none md:max-w-none">
         <div className="aspect-square overflow-hidden rounded-full border border-border bg-muted p-2 shadow-sm transition-transform duration-300 hover:scale-[1.02]">
-          <img src={profilePhoto.url} alt="Alissa Ann Josy" className="h-full w-full rounded-full object-cover object-center" />
+          <img src={profilePhoto} alt="Alissa Ann Josy" className="h-full w-full rounded-full object-cover object-center" />
         </div>
         <p className="mt-4 text-center text-xs leading-5 text-muted-foreground">B.S. Computer Science · GPA 3.8 · May 2027</p>
       </div>
