@@ -30,7 +30,11 @@ const Navigation = () => {
         }
       }
       if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-        nextHref = sections[sections.length - 1]?.href ?? nextHref;
+        const anchorSection = sections.find((section) => section.href === window.location.hash);
+        const anchorTop = anchorSection?.element.getBoundingClientRect().top;
+        nextHref = anchorSection && anchorTop !== undefined && anchorTop >= 0 && anchorTop < window.innerHeight
+          ? anchorSection.href
+          : sections[sections.length - 1]?.href ?? nextHref;
       }
       setActiveHref(nextHref);
     };
@@ -40,10 +44,12 @@ const Navigation = () => {
     updateActiveSection();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", scheduleUpdate);
     return () => {
       window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", scheduleUpdate);
     };
   }, []);
 
