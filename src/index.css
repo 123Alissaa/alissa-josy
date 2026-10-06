@@ -25,6 +25,7 @@
     --border: 40 12% 82%;
     --input: 40 12% 82%;
     --ring: 168 40% 28%;
+    --project-hover-shadow: 0 8px 22px -12px hsl(var(--foreground) / 0.18);
     --radius: 0.375rem;
     --sidebar-background: 42 33% 97%;
     --sidebar-foreground: 210 11% 15%;
@@ -84,6 +85,39 @@
 
 .project-row:nth-child(even) {
   background-image: linear-gradient(90deg, transparent, hsl(var(--accent) / 0.18), transparent);
+}
+
+.section-nav-link[aria-current="location"] {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+}
+
+.reveal-enabled .project-row,
+.project-row {
+  transition: opacity 480ms ease, transform 300ms ease, box-shadow 300ms ease;
+}
+
+.project-image {
+  transition: transform 300ms ease;
+}
+
+.project-row:focus-within,
+.project-row:hover {
+  box-shadow: var(--project-hover-shadow);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-row.is-visible:focus-within,
+  .project-row.is-visible:hover {
+    transform: translateY(-3px);
+  }
+
+  .project-row:focus-within .project-image,
+  .project-row:hover .project-image {
+    transform: scale(1.025);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
