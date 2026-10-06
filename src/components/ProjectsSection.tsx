@@ -94,3 +94,36 @@ const ProjectsSection = () => (
                 View project on GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
               {project.demo && (
+                <a href={project.demo} target="_blank" rel="noreferrer" className="story-link ml-6 mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                  Try live demo <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              )}
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <Reveal className="mt-16">
+        <h3 className="font-playfair text-2xl font-semibold text-foreground">Additional work</h3>
+        <div className="mt-5 divide-y divide-border border-y border-border">
+          {additionalProjects.map((project) => (
+            <article key={project.title} className="grid gap-2 py-5 sm:grid-cols-[1fr_1.4fr_auto] sm:items-center sm:gap-8">
+              <div>
+                <h4 className="font-semibold text-foreground">{project.title}</h4>
+                <p className="mt-1 text-xs font-medium text-primary">{project.tech}</p>
+              </div>
+              <p className="text-sm leading-6 text-muted-foreground">{project.detail}</p>
+              {project.repo && (
+                <a href={project.repo} target="_blank" rel="noreferrer" aria-label={`View ${project.title} on GitHub`} className="inline-flex items-center gap-1 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                  GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      </Reveal>
+    </div>
+  </section>
+);
+
+export default ProjectsSection;
