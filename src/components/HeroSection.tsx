@@ -1,6 +1,6 @@
 import { ArrowDownRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import profilePhoto from "@/assets/alissa-headshot.png.asset.json";
+import profilePhoto from "@/assets/alissa-headshot.jpg";
 
 const HeroSection = () => (
   <section id="home" className="border-b border-border">
