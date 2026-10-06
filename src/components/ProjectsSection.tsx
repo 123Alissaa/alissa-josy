@@ -71,7 +71,7 @@ const ProjectsSection = () => (
           <Reveal as="article" key={project.number} className="project-row grid gap-8 border-b border-border py-12 first:pt-8 md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1.4fr)] md:items-center md:gap-14 lg:gap-20">
             <div className={`relative mx-auto w-full max-w-[260px] ${index % 2 === 1 ? "md:order-2" : ""}`}>
               <span aria-hidden="true" className="absolute -left-5 -top-8 -z-10 font-playfair text-[7rem] leading-none text-accent md:-left-10 md:text-[9rem]">{project.number}</span>
-              <div className="aspect-square overflow-hidden rounded-full border border-border bg-background p-2">
+              <div className="project-image aspect-square overflow-hidden rounded-full border border-border bg-background p-2">
                 {project.image ? (
                   <img src={project.image} alt="" className="h-full w-full rounded-full object-cover" />
                 ) : (
@@ -95,7 +95,7 @@ const ProjectsSection = () => (
               </a>
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noreferrer" className="story-link ml-6 mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                  Try live demo <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  Live demo <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
               )}
             </div>
