@@ -50,7 +50,6 @@ const featuredProjects = [
 const additionalProjects = [
   { title: "LLM-Powered Financial Data Analyzer", detail: "Structured earnings metrics, risks, and sentiment across four companies; reduced transcript analysis from four hours to 10 seconds.", tech: "Python · Pandas · SQL · Groq", repo: "https://github.com/123Alissaa/llm-earnings-analyzer" },
   { title: "C++ Limit Order Book Engine", detail: "Price-time priority matching for limit, market, IOC, and fill-or-kill orders.", tech: "C++17 · C", repo: "https://github.com/123Alissaa/orderbook" },
-  { title: "E-Commerce Store", detail: "Full-stack commerce workflows with typed APIs, product search, and cart state.", tech: "Next.js · TypeScript · GraphQL · PostgreSQL", repo: null },
   { title: "AI Interview Coach", detail: "Private, local-LLM interview practice with structured communication feedback.", tech: "Python · Streamlit · Ollama · Mistral", repo: "https://github.com/123Alissaa/ai-interview-coach" },
 ];
 
@@ -93,7 +92,6 @@ const ProjectsSection = () => (
               <p className="mt-6 text-xs font-semibold uppercase leading-5 text-muted-foreground">{project.tech}</p>
               <a href={project.repo} target="_blank" rel="noreferrer" className="project-link mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                 View project on GitHub <ArrowUpRight className="project-arrow h-4 w-4" aria-hidden="true" />
-                <span className="project-explore text-xs font-medium text-muted-foreground" aria-hidden="true">Explore project</span>
               </a>
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noreferrer" className="story-link ml-6 mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
@@ -109,7 +107,7 @@ const ProjectsSection = () => (
         <h3 className="font-playfair text-2xl font-semibold text-foreground">Additional work</h3>
         <div className="mt-5 divide-y divide-border border-y border-border">
           {additionalProjects.map((project) => (
-            <article key={project.title} className="grid gap-2 py-5 sm:grid-cols-[1fr_1.4fr_auto] sm:items-center sm:gap-8">
+            <article key={project.title} className="additional-project grid gap-2 py-5 sm:grid-cols-[1fr_1.4fr_auto] sm:items-center sm:gap-8">
               <div>
                 <h4 className="font-semibold text-foreground">{project.title}</h4>
                 <p className="mt-1 text-xs font-medium text-primary">{project.tech}</p>
