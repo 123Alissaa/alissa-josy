@@ -7,8 +7,8 @@ const ContactSection = () => (
       <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-end">
         <div>
           <p className="text-sm font-semibold uppercase text-background/70">Contact</p>
-          <h2 className="mt-3 max-w-2xl font-playfair text-4xl font-semibold leading-tight md:text-5xl">Let’s build something reliable.</h2>
-          <p className="mt-5 max-w-xl leading-7 text-background/75">I’m interested in software engineering opportunities across backend systems, platform engineering, and applied AI.</p>
+          <h2 className="mt-3 max-w-2xl font-playfair text-4xl font-semibold leading-tight md:text-5xl">Let’s talk about backend systems, applied AI, or your team.</h2>
+          <p className="mt-5 max-w-xl leading-7 text-background/75">I’m open to software engineering opportunities across backend systems, platform engineering, and applied AI.</p>
           <Button asChild variant="secondary" size="lg" className="mt-7">
             <a href="mailto:alissaannjosy@gmail.com"><Mail /> alissaannjosy@gmail.com</a>
           </Button>

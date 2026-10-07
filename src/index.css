@@ -103,6 +103,16 @@
   transition: transform 300ms ease;
 }
 
+.project-arrow { transition: transform 250ms ease; }
+.project-explore { opacity: 0; transition: opacity 250ms ease; }
+.project-row:hover .project-explore,
+.project-row:focus-within .project-explore { opacity: 1; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .project-row:hover .project-arrow,
+  .project-row:focus-within .project-arrow { transform: translate(2px, -2px); }
+}
+
 .project-row:focus-within,
 .project-row:hover {
   box-shadow: var(--project-hover-shadow);

@@ -90,8 +90,9 @@ const ProjectsSection = () => (
                 {project.impact.map((line) => <li key={line} className="border-l-2 border-primary pl-4">{line}</li>)}
               </ul>
               <p className="mt-6 text-xs font-semibold uppercase leading-5 text-muted-foreground">{project.tech}</p>
-              <a href={project.repo} target="_blank" rel="noreferrer" className="story-link mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                View project on GitHub <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              <a href={project.repo} target="_blank" rel="noreferrer" className="project-link mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                View project on GitHub <ArrowUpRight className="project-arrow h-4 w-4" aria-hidden="true" />
+                <span className="project-explore text-xs font-medium text-muted-foreground" aria-hidden="true">Explore project</span>
               </a>
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noreferrer" className="story-link ml-6 mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
