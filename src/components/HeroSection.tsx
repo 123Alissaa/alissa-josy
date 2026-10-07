@@ -1,7 +1,7 @@
-import { ArrowDownRight, Download, FileText, Github, Linkedin } from "lucide-react";
+import { ArrowDownRight, FileText, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/alissa-headshot.jpg";
-import resume from "@/assets/alissa-resume.pdf.asset.json";
+const resumeUrl = `${import.meta.env.BASE_URL}alissa-josy-resume.pdf`;
 
 const HeroSection = () => (
   <section id="home" className="border-b border-border">
@@ -23,10 +23,7 @@ const HeroSection = () => (
             <a href="#work">View work <ArrowDownRight /></a>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <a href={resume.url} target="_blank" rel="noreferrer"><FileText /> View résumé</a>
-          </Button>
-          <Button asChild size="lg" variant="ghost">
-            <a href={resume.url} download="Alissa-Josy-Resume.pdf"><Download /> Download</a>
+            <a href={resumeUrl} target="_blank" rel="noreferrer"><FileText /> View résumé</a>
           </Button>
         </div>
 
@@ -34,7 +31,7 @@ const HeroSection = () => (
           <a href="https://github.com/123Alissaa" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <Github className="h-4 w-4" /> GitHub
           </a>
-          <a href="https://linkedin.com/in/alissaannjosy" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <a href="https://www.linkedin.com/in/alissaannjosy/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <Linkedin className="h-4 w-4" /> LinkedIn
           </a>
         </div>

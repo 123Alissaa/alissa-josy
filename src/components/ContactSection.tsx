@@ -14,7 +14,7 @@ const ContactSection = () => (
           </Button>
         </div>
         <div className="flex flex-col gap-3 border-t border-background/20 pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
-          <a href="https://linkedin.com/in/alissaannjosy" target="_blank" rel="noreferrer" className="flex items-center justify-between py-2 text-background transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background">
+          <a href="https://www.linkedin.com/in/alissaannjosy/" target="_blank" rel="noreferrer" className="flex items-center justify-between py-2 text-background transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background">
             <span className="inline-flex items-center gap-2"><Linkedin className="h-4 w-4" /> LinkedIn</span><ArrowUpRight className="h-4 w-4" />
           </a>
           <a href="https://github.com/123Alissaa" target="_blank" rel="noreferrer" className="flex items-center justify-between py-2 text-background transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background">

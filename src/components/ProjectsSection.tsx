@@ -1,6 +1,7 @@
 import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import projectKvstore from "@/assets/project-kvstore.png";
+import projectBacktest from "@/assets/project-backtest.jpg";
 import projectCollabpad from "@/assets/project-collabpad.png";
 
 const featuredProjects = [
@@ -13,7 +14,7 @@ const featuredProjects = [
       "Tested candidate fixes in parallel sandbox branches, accepting only repairs that pass behavioral checks; added 106 offline tests.",
     ],
     tech: "Python · NVIDIA Nemotron · Nebius Sandboxes · pandas · Streamlit",
-    image: null,
+    image: projectBacktest,
     repo: "https://github.com/123Alissaa/backtest-auditor",
     demo: "https://backtest-auditor.streamlit.app",
   },
