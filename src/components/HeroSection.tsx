@@ -1,6 +1,7 @@
-import { ArrowDownRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDownRight, Download, FileText, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/alissa-headshot.jpg";
+import resume from "@/assets/alissa-resume.pdf.asset.json";
 
 const HeroSection = () => (
   <section id="home" className="border-b border-border">
@@ -22,7 +23,10 @@ const HeroSection = () => (
             <a href="#work">View work <ArrowDownRight /></a>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <a href="mailto:alissaannjosy@gmail.com"><Mail /> Email</a>
+            <a href={resume.url} target="_blank" rel="noreferrer"><FileText /> View résumé</a>
+          </Button>
+          <Button asChild size="lg" variant="ghost">
+            <a href={resume.url} download="Alissa-Josy-Resume.pdf"><Download /> Download</a>
           </Button>
         </div>
 
