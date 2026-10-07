@@ -34,7 +34,7 @@ const HeroSection = () => (
           <a href="https://github.com/123Alissaa" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <Github className="h-4 w-4" /> GitHub
           </a>
-          <a href="https://linkedin.com/in/alissaannjosy" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <a href="https://www.linkedin.com/in/alissaannjosy/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <Linkedin className="h-4 w-4" /> LinkedIn
           </a>
         </div>
