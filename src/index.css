@@ -104,9 +104,16 @@
 }
 
 .project-arrow { transition: transform 250ms ease; }
-.project-explore { opacity: 0; transition: opacity 250ms ease; }
-.project-row:hover .project-explore,
-.project-row:focus-within .project-explore { opacity: 1; }
+
+.additional-project {
+  transition: background-color 250ms ease, box-shadow 250ms ease, transform 250ms ease;
+}
+
+.additional-project:hover,
+.additional-project:focus-within {
+  background-color: hsl(var(--card));
+  box-shadow: var(--project-hover-shadow);
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .project-row:hover .project-arrow,
@@ -127,6 +134,11 @@
   .project-row:focus-within .project-image,
   .project-row:hover .project-image {
     transform: scale(1.025);
+  }
+
+  .additional-project:hover,
+  .additional-project:focus-within {
+    transform: translateY(-2px);
   }
 }
 
