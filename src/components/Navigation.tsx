@@ -13,7 +13,6 @@ const navItems = [
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeHref, setActiveHref] = useState("");
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const sections = navItems.flatMap((item) => {
@@ -38,8 +37,6 @@ const Navigation = () => {
           : sections[sections.length - 1]?.href ?? nextHref;
       }
       setActiveHref(nextHref);
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0);
     };
     const scheduleUpdate = () => {
       if (!frame) frame = window.requestAnimationFrame(updateActiveSection);
@@ -94,7 +91,6 @@ const Navigation = () => {
           </div>
         </div>
       )}
-      <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress})` }} aria-hidden="true" />
     </header>
   );
 };

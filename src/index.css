@@ -126,6 +126,11 @@
   .project-row:hover .project-image {
     transform: scale(1.025);
   }
+
+  .additional-project:hover,
+  .additional-project:focus-within {
+    transform: translateY(-2px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

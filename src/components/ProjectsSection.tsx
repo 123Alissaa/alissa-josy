@@ -107,7 +107,7 @@ const ProjectsSection = () => (
         <h3 className="font-playfair text-2xl font-semibold text-foreground">Additional work</h3>
         <div className="mt-5 divide-y divide-border border-y border-border">
           {additionalProjects.map((project) => (
-            <article key={project.title} className="additional-project grid gap-2 py-5 sm:grid-cols-[1fr_1.4fr_auto] sm:items-center sm:gap-8">
+            <article key={project.title} className="additional-project grid gap-2 px-4 py-5 sm:grid-cols-[1fr_1.4fr_auto] sm:items-center sm:gap-8">
               <div>
                 <h4 className="font-semibold text-foreground">{project.title}</h4>
                 <p className="mt-1 text-xs font-medium text-primary">{project.tech}</p>
